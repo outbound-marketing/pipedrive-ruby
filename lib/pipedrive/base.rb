@@ -129,6 +129,12 @@ module Pipedrive
         res.ok? ? new_list(res) : bad_response(res,{:name => name}.merge(opts))
       end
 
+      def search(name, api_token = nil, opts={})
+        opts.merge!({:api_token => api_token}) if api_token
+        res = get "#{resource_path}/search", :query => { :term => name }.merge(opts)
+        res.ok? ? new_list(res) : bad_response(res,{:name => name}.merge(opts))
+      end
+
       def resource_path
         # The resource path should match the camelCased class name with the
         # first letter downcased.  Pipedrive API is sensitive to capitalisation
