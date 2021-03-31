@@ -7,10 +7,6 @@ module Pipedrive
         find_by_name(name, :org_id => opts[:org_id]).first || create(opts.merge(:name => name))
       end
 
-      def search(name, api_token, opts={})
-        search(name, api_token, opts)
-      end
-
     end
 
     def deals(api_token, params={})
